@@ -1,6 +1,6 @@
 import random
 
-from falcon.asgi import App, Request, Response, WebSocket
+from falcon.asgi import App, Request, Response, WebSocket, SSEvent
 from falcon import WebSocketDisconnected
 
 
@@ -27,5 +27,17 @@ class Stream:
                 break
 
 
+class Event:
+    async def on_get(self, req: Request, resp: Response):
+        async def emitter():
+            epoch = 5
+            while epoch > 0:
+                epoch -= 1
+                yield SSEvent(text=f"epoch: {epoch}")
+
+        resp.sse = emitter()
+
+
 app = App()
-app.add_route("/{account_id}/message", Stream())
+app.add_route("/websocket/{account_id}", Stream())
+app.add_route("/event", Event())
