@@ -21,7 +21,7 @@ class Stream:
                 payload = await ws.receive_text()
                 payload = payload.strip()
                 print(f"receive '{payload}' from {account_id}")
-                await ws.send_text(f"Hello, {payload}!")
+                await ws.send_text(f"Hello, {payload} ({RANDOM_BYTES})!")
             except WebSocketDisconnected:
                 print(f"{account_id} disconnected")
                 break
