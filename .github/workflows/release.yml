@@ -27,8 +27,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: kemingy/stream_test:${{ github.event.ref }}
+        tags: kemingy/streaming:latest,kemingy/streaming:${{ github.ref_name }}
         file: Dockerfile
-        platforms: linux/amd64,linux/arm64
         cache-from: type=gha
         cache-to: type=gha,mode=max
