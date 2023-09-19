@@ -38,6 +38,13 @@ class Event:
         resp.sse = emitter()
 
 
+class Ping:
+    async def on_get(self, req: Request, resp: Response):
+        resp.text = "pong"
+        resp.content_type = "text/plain"
+
+
 app = App()
+app.add_route("/", Ping())
 app.add_route("/websocket/{account_id}", Stream())
 app.add_route("/event", Event())
