@@ -33,7 +33,7 @@ class Event:
             epoch = 5
             while epoch > 0:
                 epoch -= 1
-                yield SSEvent(text=f"epoch: {epoch}")
+                yield SSEvent(text=f"epoch: {epoch} {RANDOM_BYTES}")
 
         resp.sse = emitter()
 
