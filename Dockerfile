@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-RUN pip install uvicorn falcon
+RUN pip install uvicorn falcon websockets
 RUN mkdir -p /workspace
 WORKDIR /workspace
 COPY main.py /workspace/main.py
